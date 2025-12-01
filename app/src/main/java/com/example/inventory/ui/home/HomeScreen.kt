@@ -1,5 +1,3 @@
-
-
 package com.example.inventory.ui.home
 
 import androidx.compose.foundation.clickable
@@ -82,8 +80,10 @@ fun HomeScreen(
         HomeBody(
             itemList = listOf(),
             onItemClick = navigateToItemUpdate,
-            modifier = modifier.fillMaxSize(),
-            contentPadding = innerPadding,
+            modifier = modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+
         )
     }
 }
@@ -129,7 +129,8 @@ private fun InventoryList(
         contentPadding = contentPadding
     ) {
         items(items = itemList, key = { it.id }) { item ->
-            InventoryItem(item = item,
+            InventoryItem(
+                item = item,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_small))
                     .clickable { onItemClick(item) })
@@ -174,9 +175,10 @@ private fun InventoryItem(
 @Composable
 fun HomeBodyPreview() {
     InventoryTheme {
-        HomeBody(listOf(
-            Item(1, "Game", 100.0, 20), Item(2, "Pen", 200.0, 30), Item(3, "TV", 300.0, 50)
-        ), onItemClick = {})
+        HomeBody(
+            listOf(
+                Item(1, "Game", 100.0, 20), Item(2, "Pen", 200.0, 30), Item(3, "TV", 300.0, 50)
+            ), onItemClick = {})
     }
 }
 
